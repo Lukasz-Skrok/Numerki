@@ -44,13 +44,13 @@ def Bisekcja(x1, x2, tryb, wariant, wartosc): #wariant - 1 dla iteracji, 2 dla d
         fA = f(tryb, x1)
         x0 = (x1 + x2) / 2
         fx0 = f(tryb, x0)
-        if(fA * fx0 < 0):
+        if fA * fx0 < 0:
             x2 = x0
         else:
             x1 = x0
         iter += 1
         dokladnosc = abs(fx0)
-    return x0
+    return x0, iter, dokladnosc
 
 def Falsi(x1, x2, tryb, wariant, wartosc):
     iter = 0
@@ -71,7 +71,7 @@ def Falsi(x1, x2, tryb, wariant, wartosc):
             x2 = x0
         iter += 1
         dokladnosc = abs(fx0)
-    return x0
+    return x0, iter, dokladnosc
 def pomoc():
     print("""
 Struktura komendy:
