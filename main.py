@@ -6,8 +6,21 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-def potega(x , y): #podnosi x do potegi y
-    return x**y
+
+def potega(podstawa, wykladnik): #bo nie mamy uzywac wbudowanych dla poteg calkowitych, ale dla pozostalych mozna? idk
+    if isinstance(wykladnik, int) or (isinstance(wykladnik, float) and wykladnik.is_integer()):
+        wynik = 1.0
+        ile_razy = abs(int(wykladnik))
+
+        for i in range(ile_razy):
+            wynik *= podstawa
+
+        if wykladnik < 0:
+            return 1.0 / wynik
+        else:
+            return wynik
+    else:
+        return podstawa ** wykladnik
 
 def Horner(x):
     wsp = [1, 5, -17, -21] #miejsca zerowe to -7, -1 i 3
@@ -43,7 +56,7 @@ def Bisekcja(x1, x2, tryb, wariant, wartosc): #wariant - 1 dla iteracji, 2 dla d
         fA = f(tryb, x1)
         x0 = (x1 + x2) / 2
         fx0 = f(tryb, x0)
-        if fA * fx0 < 0:
+        if fA * fx0 <= 0:
             x2 = x0
         else:
             x1 = x0
@@ -64,7 +77,7 @@ def Falsi(x1, x2, tryb, wariant, wartosc):
         fB = f(tryb, x2)
         x0 = (x1 * fB - x2 * fA) / (fB - fA)
         fx0 = f(tryb, x0)
-        if fA * fx0 < 0:
+        if fA * fx0 <= 0:
             x2 = x0
         else:
             x1 = x0
